@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/SlimShady9/twittor/middlew"
-	"github.com/SlimShady9/twittor/routes"
+	"github.com/SlimShady9/twittor/routers"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
@@ -15,8 +15,8 @@ import (
 func Manejadores() {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/registro", middlew.ChequeoBD(routes.Registro)).Methods("POST")
-
+	router.HandleFunc("/registro", middlew.ChequeoBD(routers.Registro)).Methods("POST")
+	router.HandleFunc("/login", middlew.ChequeoBD(routers.Login)).Methods("POST")
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
