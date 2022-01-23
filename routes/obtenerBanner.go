@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"io"
+	"io/ioutil"
 	"net/http"
-	"os"
+	"strconv"
 
 	"github.com/SlimShady9/twittor/bd"
 )
@@ -21,12 +21,13 @@ func ObtenerBanner(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	OpenFile, _ := os.Open("uploads/banners/" + perfil.Avatar)
+	OpenFile, _ := ioutil.ReadFile("uploads/banners/" + perfil.Banner)
 
-	_, err = io.Copy(w, OpenFile)
 	if err != nil {
 		http.Error(w, "Error al copiar el Banner", http.StatusBadRequest)
 		return
 	}
+	w.Header().Set("Content-Length", strconv.Itoa(len(OpenFile)))
+	w.Write(OpenFile)
 
 }
