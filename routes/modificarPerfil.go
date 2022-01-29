@@ -22,7 +22,7 @@ func ModificarPerfil(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Ocurrio un error al intentar modificar el registro"+err.Error(), 400)
 		return
 	}
-	if status {
+	if !status {
 		http.Error(w, "No se modifico el registro", 400)
 		return
 	}
