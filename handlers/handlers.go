@@ -39,6 +39,11 @@ func Manejadores() {
 	if PORT == "" {
 		PORT = "8080"
 	}
-	handler := cors.AllowAll().Handler(router)
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:3000", "https://mitwittor.netlify.app/"},
+		AllowedMethods:   []string{"POST", "GET", "PUT", "DELETE", "OPTIONS"},
+		AllowCredentials: true,
+	})
+	handler := c.Handler(router)
 	log.Fatal(http.ListenAndServe(":"+PORT, handler))
 }
