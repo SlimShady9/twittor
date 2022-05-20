@@ -40,7 +40,7 @@ func Manejadores() {
 		PORT = "8080"
 	}
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000", "https://mitwittor.netlify.app/"},
+		AllowedOrigins:   []string{"http://localhost:3000", "https://fronttwittor.vercel.app"},
 		AllowedMethods:   []string{"POST", "GET", "PUT", "DELETE", "OPTIONS"},
 		AllowCredentials: true,
 	})
